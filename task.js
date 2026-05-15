@@ -35,3 +35,4 @@ const result = passedStudents.map(student => {
 result.forEach(message => {
     console.log(message);
 });
+

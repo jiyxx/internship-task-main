@@ -60,7 +60,7 @@ let fruit = prompt("Which fruit to buy?", apple);
 let bag = {
     [fruit]: 5,
 };
-alert(bag.apple);
+alert(bag.apple);//5
 
 //function that returns an object
 function makeUser(name,age){
