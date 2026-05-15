@@ -28,7 +28,7 @@ function addTask() {
     taskInput.value = ""; //clears the input fields after adding a task
 }
 
-//Rendering tasks on the screen  (forEach() + createElement() + innerHTML + appendChild())
+//Rendering tasks on the screen  
 function renderTasks() {
 
   taskList.innerHTML = ""; //clears old list before rendering again 
@@ -36,19 +36,19 @@ function renderTasks() {
   let filteredTasks = tasks;
 
   if(currentFilter === "active"){
-    filteredTasks = tasks.filter(task => !task.completed); //returns only active tasks 
+    filteredTasks = tasks.filter(task => !task.completed); 
   }
 
   if(currentFilter === "completed"){
-    filteredTasks = tasks.filter(task => task.completed); //returns only completed tasks
+    filteredTasks = tasks.filter(task => task.completed); 
   }
 
-  filteredTasks.forEach(task => {  //loops through every task in an array
+  filteredTasks.forEach(task => {  
   
     const li = document.createElement("li"); 
 
     if(task.completed){
-      li.classList.add("completed"); //adds a class to the list items if task is completed
+      li.classList.add("completed"); 
     }
 
     li.innerHTML = ` 
@@ -71,7 +71,7 @@ function renderTasks() {
 
     deleteBtn.addEventListener("click", () => {
       deleteTask(task.id);
-    });// adds an event listener to the delete button that calls the deleteTask function with the task's id when clicked
+    });
 
     taskList.appendChild(li); 
   });
@@ -89,7 +89,7 @@ function toggleTask(id){
         ...task, //spread operator to copy all the properties of the original task obj 
         completed: !task.completed 
       };
-    } // it creates a new task object with the same properties as the original task but with the completed property toggled 
+    } 
     return task;
   });
   saveTasks();
