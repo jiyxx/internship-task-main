@@ -1,5 +1,5 @@
 //Getting elements from id 
-const taskinput = document.getElementById('taskInput'); 
+const taskInput = document.getElementById('taskInput'); 
 const addBtn = document.getElementById('addBtn');
 const taskList = document.getElementById('taskList');
 const totalTasks = document.getElementById('totalTasks');
@@ -8,27 +8,27 @@ const filterButtons = document.querySelectorAll('.filter-btn');
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || []; //
 
-let currentFilter = "all";
+let currentFilter = "all"; 
 
 //adding task to the list
 function addTask() {
-    const taskText = taskInput.value.trim(); //trim removes extra space 
+    const taskText = taskInput.value.trim(); 
 
     if(taskText == "") return; 
 
     const newtask = {
-        id : Date.now(), 
+        id : Date.now(), //
         text : taskText,
         completed : false
     }
 
-    tasks.push(newtask); //adds new item into array
+    tasks.push(newtask); 
     saveTasks();
     renderTasks();
-    taskInput.value = ""; //clears the input fields after adding a task
+    taskInput.value = ""; 
 }
 
-//Rendering tasks on the screen  (forEach() + createElement() + innerHTML + appendChild())
+//Rendering tasks on the screen 
 function renderTasks() {
 
   taskList.innerHTML = ""; //clears old list before rendering again 
@@ -43,6 +43,10 @@ function renderTasks() {
     filteredTasks = tasks.filter(task => task.completed); //returns only completed tasks
   }
 
+  if(filteredTasks.length === 0){
+    taskList.innerHTML = "<p> No tasks added yet! </p>";  //displays a message when there are no tasks to show 
+  }
+
   filteredTasks.forEach(task => {  //loops through every task in an array
   
     const li = document.createElement("li"); 
@@ -50,7 +54,7 @@ function renderTasks() {
     if(task.completed){
       li.classList.add("completed"); //adds a class to the list items if task is completed
     }
-
+ 
     li.innerHTML = ` 
       <div class="task-left">
         <input type="checkbox" ${task.completed ? "checked" : ""}>
@@ -71,7 +75,7 @@ function renderTasks() {
 
     deleteBtn.addEventListener("click", () => {
       deleteTask(task.id);
-    });// adds an event listener to the delete button that calls the deleteTask function with the task's id when clicked
+    });
 
     taskList.appendChild(li); 
   });
@@ -98,7 +102,7 @@ function toggleTask(id){
 
 //delete a task
 function deleteTask(id){
-    tasks = tasks.filter(task => task.id != id);
+    tasks = tasks.filter(task => task.id !== id);
     saveTasks();
     renderTasks();
 }
@@ -130,6 +134,11 @@ filterButtons.forEach(button => {
 
   button.addEventListener("click", () => {
     currentFilter = button.dataset.filter;
+    filterButtons.forEach(btn => {  
+      btn.classList.remove("active"); // removes active class from all the buttons when any button is clicked
+    });
+    button.classList.add("active"); // adds active class to the clicked button 
+
     renderTasks();
   });
 }); 
