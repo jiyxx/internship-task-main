@@ -28,34 +28,40 @@ function addTask() {
     taskInput.value = ""; 
 }
 
-//Rendering tasks on the screen 
 function renderTasks() {
 
-  taskList.innerHTML = ""; //clears old list before rendering again 
+  taskList.innerHTML = "";
 
   let filteredTasks = tasks;
 
   if(currentFilter === "active"){
-    filteredTasks = tasks.filter(task => !task.completed); //returns only active tasks 
+    filteredTasks = tasks.filter(task => !task.completed);
   }
 
   if(currentFilter === "completed"){
-    filteredTasks = tasks.filter(task => task.completed); //returns only completed tasks
+    filteredTasks = tasks.filter(task => task.completed);
   }
 
   if(filteredTasks.length === 0){
-    taskList.innerHTML = "<p> No tasks added yet! </p>";  //displays a message when there are no tasks to show 
-  }
 
-  filteredTasks.forEach(task => {  //loops through every task in an array
-  
-    const li = document.createElement("li"); 
+  taskList.innerHTML = `
+    <p class="empty-message">
+      No tasks yet! Add one above.
+    </p>
+  `;
+
+  return;
+}
+
+  filteredTasks.forEach(task => {
+
+    const li = document.createElement("li");
 
     if(task.completed){
-      li.classList.add("completed"); //adds a class to the list items if task is completed
+      li.classList.add("completed");
     }
- 
-    li.innerHTML = ` 
+
+    li.innerHTML = `
       <div class="task-left">
         <input type="checkbox" ${task.completed ? "checked" : ""}>
         <span>${task.text}</span>
@@ -65,7 +71,8 @@ function renderTasks() {
     `;
 
     // checkbox
-    const checkbox = li.querySelector("input");  //selects the checkbox input element 
+    const checkbox = li.querySelector("input");
+
     checkbox.addEventListener("change", () => {
       toggleTask(task.id);
     });
@@ -77,7 +84,7 @@ function renderTasks() {
       deleteTask(task.id);
     });
 
-    taskList.appendChild(li); 
+    taskList.appendChild(li);
   });
 
   updateCounts();
@@ -93,7 +100,7 @@ function toggleTask(id){
         ...task, //spread operator to copy all the properties of the original task obj 
         completed: !task.completed 
       };
-    } // it creates a new task object with the same properties as the original task but with the completed property toggled 
+    } 
     return task;
   });
   saveTasks();
@@ -120,7 +127,7 @@ function updateCounts(){
 }
 
 //event listeners
-addBtn.addEventListener("click", addTask);
+addBtn.addEventListener ("click", addTask);
 
 //enter key press
 taskInput.addEventListener("keypress", (e) => {
@@ -141,9 +148,7 @@ filterButtons.forEach(button => {
 
     renderTasks();
   });
-}); 
+});
 
 //Rendering tasks 
 renderTasks();
-
-
