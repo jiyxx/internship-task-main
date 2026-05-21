@@ -73,6 +73,17 @@ function displayUsers(users) {
         <span class="label">City:</span>
         ${user.address.city}
       </p>
+
+      <p class = "info">
+        <span class = "label"> Company: </span>
+        ${user.company.name}
+      </p>
+
+      <p class= "info" >
+        <span class ="label"> Phone:</span>
+        ${user.phone}
+      </p>
+
     `;
 
     userContainer.appendChild(card);
@@ -95,3 +106,4 @@ searchInput.addEventListener("input", function(e){
 
 // Initial Fetch
 fetchUsers();
+
