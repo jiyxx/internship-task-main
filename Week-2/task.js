@@ -25,11 +25,8 @@ async function fetchUsers() {
     const users = await response.json();
 
     allUsers = users;
-
-    setTimeout(() => {
-      displayUsers(allUsers);
-      loading.style.display = "none";
-    },1000);
+    displayUsers(allUsers);
+    loading.style.display = "none";
 
   } catch (err) {
 
@@ -59,7 +56,7 @@ function displayUsers(users) {
 
     const card = document.createElement("div");
 
-    card.classList.add("user-card");
+    card.classList.add("user-card"); // Add class for styling
 
     card.innerHTML = `
       <h2>${user.name}</h2>
@@ -92,12 +89,12 @@ function displayUsers(users) {
 }
 
 // Real-Time Search
-searchInput.addEventListener("input", function(e){
+searchInput.addEventListener("input", (e) => { 
 
-  const searchText = e.target.value.toLowerCase();
+  const searchText = e.target.value.toLowerCase();  
 
-  const filteredUsers = allUsers.filter(user =>
-    user.name.toLowerCase().includes(searchText)
+  const filteredUsers = allUsers.filter(user => 
+    user.name.toLowerCase().includes(searchText) 
   );
 
   displayUsers(filteredUsers);
