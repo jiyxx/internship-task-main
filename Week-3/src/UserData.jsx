@@ -12,15 +12,20 @@ export default function UserData() {
   // Fetching Data from API
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json())
+      .then((response) => {
+        if(!response.ok){
+          throw new Error("Failed to fetch users data");
+        }
+        return response.json();
+      })
 
       .then((data) => {
         setUser(data);
         setLoading(false);
       })
-
+      
       .catch((error) => {
-        setError(error);
+        setError(error.message);
         setLoading(false);
       });
   }, []);
@@ -66,10 +71,9 @@ export default function UserData() {
             phone={user.phone}
           />
         ))}
-      </div>
 
-      <div className="user-grid">
-        {filteredUsers.length === 0 && !loading && <p> No Users found</p>}
+        {filteredUsers.length === 0 && !loading && <p> No Users found </p>}
+
       </div>
     </div>
   );

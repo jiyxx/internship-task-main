@@ -2,7 +2,7 @@ function UserCard(props) {
     console.log("user card", props );
     return (
         <div className = "card">
-            <h2> Name: {props.name}</h2>
+            <h2> {props.name}</h2>
 
             <p>
                 <strong>Email: </strong> {props.email}
