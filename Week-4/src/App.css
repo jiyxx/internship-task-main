@@ -1,0 +1,319 @@
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0px;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.navbar {
+  position: sticky;
+  top: 15px;
+  z-index: 1000;
+
+  width: fit-content;
+  margin: 0 auto 20px ;
+
+  display: flex;
+  align-items: center;
+
+  background: grey;
+  border-radius: 12px;
+  overflow: hidden;
+
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.navbar a , 
+.theme-btn{
+  padding: 18px 28px;
+  color: white;
+  text-decoration: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.navbar a:hover , 
+.theme-btn:hover {
+  background-color: #535252;
+}
+
+.navbar a.active {
+  background-color: #535252;
+  color: white;
+}
+
+.container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  padding-top: 5px;
+  margin-top: 0px;
+}
+.user-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 400px));
+  justify-content: center;
+  gap: 25px;
+  margin-top: 5px;
+  display: grid;
+  padding-bottom: 20px;
+  /* height: 500px; */
+  overflow-y: auto;
+}
+
+.card {
+  background: rgb(255, 251, 251);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+  margin-top: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.card p {
+  font-weight: 500;
+  word-wrap: break-word;
+  font-size: 18px;
+  margin: 12px 0;
+  color: #333;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card strong {
+  color: black;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0px 4px 20px rgba(30, 4, 4, 0.2);
+}
+
+.card h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.header {
+  text-align: center;
+}
+
+.display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-detail {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 35px;
+  background: rgb(255, 251, 251);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.user-detail h1 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.user-detail p {
+  margin: 16px 0;
+  line-height: 1.2;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  font-size: 1rem;
+}
+
+.user-detail strong {
+  display: inline-block;
+  min-width: 100px;
+  color: #222;
+}
+
+.dark .card,
+.dark .user-detail {
+  background: #1e293b;
+  color: white;
+}
+
+.dark .card p,
+.dark .card strong,
+.dark .user-detail strong {
+  color: white;
+}
+
+.back-button {
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto 0;
+}
+
+.back-button button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #535252;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.back-button button:hover {
+  background-color: #3f3f3f;
+}
+
+.loading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.error{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.contact-form{
+  display: flex;
+  justify-content : center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.form-container {
+  max-width: 650px;
+  margin : 40px auto;
+  margin-bottom: 20px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.form-container h1{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dark .form-container {
+  background: #1e293b;
+  color: white;
+}
+
+.dark .form-group input,
+.dark .form-group textarea {
+  background: #334155;
+  color: white;
+  border: 1px solid #475569;
+}
+
+.dark .form-group input::placeholder,
+.dark .form-group textarea::placeholder {
+  color: #cbd5e1;
+}
+
+.form-group{
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.success-message{
+  color: green;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+button{
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.home-page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.home-page h1{
+  margin-top: 20px;
+}
+
+.form-text{
+  display: block;
+  text-align: right;
+  font-size: 12px;
+  color: #666;
+}
+
+.light,
+.dark {
+  background: #f3f6fb;
+}
+
+.dark {
+  background: #0f172a;
+}
+
+.light {
+  background: #f3f6fb;
+  min-height: 100vh;
+  width: 100%;
+  color: black;
+}
+.dark {
+  background: #0f172a;
+  min-height: 100vh;
+  width: 100%;
+  color: white;
+}
+
+
