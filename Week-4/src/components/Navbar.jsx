@@ -9,8 +9,8 @@ export default function Navbar() {
     <div className="navbar">
 
       <NavLink to="/"> Home </NavLink> 
-      <NavLink to="/Users"> Users</NavLink>
-      <NavLink to="/Contacts" > Contacts </NavLink>
+      <NavLink to="/users"> Users</NavLink>
+      <NavLink to="/contacts" > Contacts </NavLink>
       
       <button className="theme-btn" onClick={toggleTheme}>
         {theme === "light" ? "🌙 Dark " : "☀️ Light"}

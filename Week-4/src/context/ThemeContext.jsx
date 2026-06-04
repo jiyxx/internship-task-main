@@ -15,7 +15,6 @@ export default function ThemeProvider({children}){
             theme,
             toggleTheme,
           }}
-          style={{display: "flex", alignItems: "right", justifyContent: "center"}}
         > 
         {children}
         </ThemeContext.Provider>

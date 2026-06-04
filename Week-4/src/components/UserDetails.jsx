@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import {useNavigate} from "react-router-dom";
 import "../App.css";
 
-export default function UserDetail() {
+export default function UserDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ export default function UserDetail() {
         setError(error.message);
         setLoading(false);
       });
-  }, []);
+  }, [id]);
 
   if (loading) return <h3 className="loading ">Loading...</h3>;
   if (error) return <h3 className="error">{error}</h3>;
