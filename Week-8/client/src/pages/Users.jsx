@@ -7,15 +7,19 @@ const Users = () => {
 
   const [users, setUsers] = useState([]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
   const [editingUserId, setEditingUserId] = useState(null);
   const [editForm, setEditForm] = useState({ name: "", email: "" });
 
   const fetchUsers = async () => {
     try {
+      setLoading(true);
       const res = await api.get("/api/users");
       setUsers(res.data);
     } catch (err) {
       setError(err.response?.data?.message || "Failed to fetch users");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -23,14 +27,17 @@ const Users = () => {
     fetchUsers();
   }, []);
 
-  const handleDelete = async (id) => {
-    try {
-      await api.delete(`/api/users/${id}`);
-      fetchUsers();
-    } catch (err) {
-      setError(err.response?.data?.message || "Delete failed");
-    }
-  };
+const handleDelete = async (id) => {
+  const confirmDelete = window.confirm("Are you sure you want to delete this user?");
+  if (!confirmDelete) return;
+
+  try {
+    await api.delete(`/api/users/${id}`);
+    fetchUsers();
+  } catch (err) {
+    setError(err.response?.data?.message || "Delete failed");
+  }
+};
 
   const handleEditClick = (user) => {
     setEditingUserId(user._id);
@@ -61,6 +68,21 @@ const Users = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
+
+  if (loading) {
+    return (
+      <div className="users-page">
+        <div className="users-topbar">
+          <h2 className="users-heading">Users</h2>
+          <button className="logout-page-btn" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
+
+        <p className="loading-text">Loading users...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="users-page">

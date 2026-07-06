@@ -8,7 +8,11 @@ const auth = (req, res, next) => {
       message: "Access denied. No token provided.",
     });
   }
-
+  if (!authHeader.startsWith("Bearer ")) {
+    return res
+      .status(401)
+      .json({ message: "Access denied. Invalid token format." });
+  }
   const token = authHeader.split(" ")[1];
 
   try {

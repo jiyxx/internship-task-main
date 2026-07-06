@@ -14,8 +14,6 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(express.json());
-
 app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
 app.use(logger);
